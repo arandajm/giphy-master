@@ -12,7 +12,7 @@ module.exports = {
   },
   devtool: "eval-source-map",
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js?$/,
         loader: "babel-loader",
