@@ -3,13 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 // react-redux gives the provider and the connect function. Connect allows to the component connect to the redux store. Provider is a component that suscribe to the redix store and allow to the connected component update it when the store is updated
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import App from "./components/App";
 import mainReducer from "./reducers";
 import { searchSuccess } from "./actions/search";
+import { createLogger } from "redux-logger";
 
 // create a store. Parameters: Reducer (Main reducer) function and Middleware
-const store = createStore(mainReducer);
+const store = createStore(mainReducer, applyMiddleware(createLogger()));
 
 const resultsInit = [
   {
