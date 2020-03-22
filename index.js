@@ -5,9 +5,30 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import App from "./components/App";
+import mainReducer from "./reducers";
+import { searchSuccess } from "./actions/search";
 
-// create a store. Parameters: Reducer function and Middleware
-const store = createStore(() => ({}));
+// create a store. Parameters: Reducer (Main reducer) function and Middleware
+const store = createStore(mainReducer);
+
+const resultsInit = [
+  {
+    full:
+      "https://media3.giphy.com/media/uw3fTCTNMbXAk/giphy.gif?cid=2d528ef0adf3d6a38f4f597a5fdc62375dcf496befbca2f2&rid=giphy.gif",
+    thumbnail:
+      "https://media3.giphy.com/media/uw3fTCTNMbXAk/100_s.gif?cid=2d528ef0adf3d6a38f4f597a5fdc62375dcf496befbca2f2&rid=100_s.gif"
+  },
+  {
+    full:
+      "https://media3.giphy.com/media/A8NNZlVuA1LoY/giphy.gif?cid=2d528ef0adf3d6a38f4f597a5fdc62375dcf496befbca2f2&rid=giphy.gif",
+    thumbnail:
+      "https://media3.giphy.com/media/A8NNZlVuA1LoY/100_s.gif?cid=2d528ef0adf3d6a38f4f597a5fdc62375dcf496befbca2f2&rid=100_s.gif"
+  }
+];
+
+window.setTimeout(() => {
+  store.dispatch(searchSuccess(resultsInit));
+}, 2000);
 
 ReactDOM.render(
   //Wrap the app component into the Provider component with a store prop
