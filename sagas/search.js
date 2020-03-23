@@ -6,8 +6,9 @@ import {
   searchSuccess,
   searchError
 } from "../actions/search";
+import keys from "../config/keys";
 
-const apiKey = "jOtGuQkXOGmV631pkzlMkm37QGwXhz0X";
+const { apiKey } = keys;
 
 function* doSearch({ searchTerm }) {
   try {
