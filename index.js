@@ -1,3 +1,5 @@
+// To apply all the polyfills to use generators in the browsers
+import "babel-regenerator-runtime";
 import React from "react";
 // Allows to render react component into the dom!
 import ReactDOM from "react-dom";
@@ -6,11 +8,19 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import App from "./components/App";
 import mainReducer from "./reducers";
-import { searchSuccess } from "./actions/search";
+import { searchSuccess, searchError } from "./actions/search";
 import { createLogger } from "redux-logger";
+import searchSaga from "./sagas/search";
+import createSagaMiddleware from "redux-saga";
 
-// create a store. Parameters: Reducer (Main reducer) function and Middleware
-const store = createStore(mainReducer, applyMiddleware(createLogger()));
+// create Saga Middleware
+const sagas = createSagaMiddleware();
+
+// create a store. Parameters: Reducer (Main reducer) function and Middlewares
+const store = createStore(mainReducer, applyMiddleware(createLogger(), sagas));
+
+// Saga Running
+sagas.run(searchSaga);
 
 const resultsInit = [
   {
@@ -26,10 +36,6 @@ const resultsInit = [
       "https://media3.giphy.com/media/A8NNZlVuA1LoY/100_s.gif?cid=2d528ef0adf3d6a38f4f597a5fdc62375dcf496befbca2f2&rid=100_s.gif"
   }
 ];
-
-window.setTimeout(() => {
-  store.dispatch(searchSuccess(resultsInit));
-}, 2000);
 
 ReactDOM.render(
   //Wrap the app component into the Provider component with a store prop
