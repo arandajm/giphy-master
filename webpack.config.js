@@ -8,6 +8,7 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
+    // for router works, this flag should be true!
     historyApiFallback: true
   },
   devtool: "eval-source-map",
