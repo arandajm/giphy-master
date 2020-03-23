@@ -4,12 +4,12 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 
 // Define action error function
 export const searchError = () => ({
-  typer: SEARCH_ERROR
+  type: SEARCH_ERROR
 });
 
 // Define action performed function
 export const searchPerformed = searchTerm => ({
-  typer: SEARCH_PERFORMED,
+  type: SEARCH_PERFORMED,
   searchTerm
 });
 

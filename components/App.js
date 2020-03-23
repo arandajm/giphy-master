@@ -1,10 +1,10 @@
 import React from "react";
-import SearchForm from "./search-form/SearchForm";
+import SearchFormContainer from "./search-form/SearchFormContainer";
 import SearchResultsContainer from "./search-results/SearchResultsContainer";
 
 export default () => (
   <div>
-    <SearchForm onSearchSubmitted={term => console.log(term)} />
+    <SearchFormContainer />
     <SearchResultsContainer />
   </div>
 );

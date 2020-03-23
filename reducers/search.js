@@ -10,7 +10,7 @@ function searchResultTransformer(element) {
     thumbnail: images.fixed_height_small_still
       ? images.fixed_height_small_still.url
       : null,
-    full: images.original ? images.url : null
+    full: images.original ? images.original.url : null
   };
 }
 
@@ -23,7 +23,7 @@ export default (state, action) => {
       return {
         ...state,
         // Transform the original action results to the expected (SearchResult)
-        results: action.results.map(element => searchResultTransformer)
+        results: action.results.map(element => searchResultTransformer(element))
       };
     default:
       return state;
