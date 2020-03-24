@@ -3,7 +3,11 @@ import Navigation from "./Navigation";
 import { push } from "react-router-redux";
 
 // Create the pages array to use in the Navigation
-const pages = [{ path: "/", title: "Search" }];
+const pages = [
+  { path: "/", title: "Search" },
+  { path: "/trending", title: "Trending" },
+  { path: "/random", title: "Random" }
+];
 
 function mapStateToProps() {
   return {

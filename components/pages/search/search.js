@@ -3,7 +3,7 @@ import SearchFormContainer from "../../search-form/SearchFormContainer";
 import SearchResultsContainer from "../../search-results/SearchResultsContainer";
 import SearchResults from "../../search-results/SearchResults";
 
-export default function search() {
+export default function Search() {
   return (
     <div>
       <SearchFormContainer />
