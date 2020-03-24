@@ -14,6 +14,7 @@ import createSagaMiddleware from "redux-saga";
 import { Router, Route } from "react-router";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 import createBrowserHistory from "History/createBrowserHistory";
+import SearchPage from "./components/pages/search/search";
 
 // create Saga Middleware
 const sagas = createSagaMiddleware();
@@ -33,7 +34,9 @@ ReactDOM.render(
   //Wrap the app component into the Provider component with a store prop
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <AppContainer />
+      <AppContainer>
+        <Route exact path="/" component={SearchPage} />
+      </AppContainer>
     </ConnectedRouter>
   </Provider>,
   document.getElementById("app")
