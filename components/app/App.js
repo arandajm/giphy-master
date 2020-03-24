@@ -1,5 +1,9 @@
 import React from "react";
-import SearchFormContainer from "../search-form/SearchFormContainer";
-import SearchResultsContainer from "../search-results/SearchResultsContainer";
+import NavigationContainer from "../navigation/NavigationContainer";
 
-export default ({ children }) => <div>{children}</div>;
+export default ({ children }) => (
+  <div>
+    <NavigationContainer />
+    {children}
+  </div>
+);
