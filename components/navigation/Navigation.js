@@ -1,18 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NavigationItem from "../navigation-item/NavigationItem";
+import styles from "./navigation.css";
 
-export default function Navigation({ pages, navigate }) {
+export default function Navigation({ pages, currentPath, navigate }) {
   // Iterate into the pages and do the NavigationItem array
   const items = pages.map(({ title, path }, i) => {
     return (
-      <NavigationItem key={i} path={path} onClick={navigate}>
+      <NavigationItem
+        key={i}
+        path={path}
+        isCurrent={currentPath === path}
+        onClick={navigate}
+      >
         {title}
       </NavigationItem>
     );
   });
 
-  return <div>{items}</div>;
+  return <div className={styles.container}>{items}</div>;
 }
 
 Navigation.propTypes = {
@@ -22,5 +28,6 @@ Navigation.propTypes = {
       title: PropTypes.string.isRequired
     })
   ).isRequired,
+  currentPath: PropTypes.string.isRequired,
   navigate: PropTypes.func.isRequired
 };

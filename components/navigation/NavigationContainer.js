@@ -9,9 +9,10 @@ const pages = [
   { path: "/random", title: "Random" }
 ];
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
-    pages
+    pages,
+    currentPath: state.router.location.pathname
   };
 }
 
