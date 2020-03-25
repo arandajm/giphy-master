@@ -23,11 +23,20 @@ module.exports = {
           plugins: ["transform-object-rest-spread"]
         }
       },
-      // Enable this loader to use css loader
+      // Enable this loaders to use css loader and style-loader
       {
-        loader:
-          "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
-        test: /\.css$/
+        test: /\.css$/,
+        loader: "style-loader"
+      },
+      {
+        test: /\.css$/i,
+        loader: "css-loader",
+        options: {
+          modules: {
+            mode: "local",
+            localIdentName: "[name]__[local]__[hash:base64:5]"
+          }
+        }
       }
     ]
   }
