@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styles from "./search-form.css";
 
 export class SearchForm extends Component {
   constructor(props) {
@@ -14,15 +15,16 @@ export class SearchForm extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
+      <form onSubmit={e => this.handleSubmit(e)} className={styles.container}>
         <input
           type="text"
           placeholder="Find me giphys..."
           ref={e => {
             this.inputRef = e;
           }}
+          className={styles.searchField}
         />
-        <input type="submit" />
+        <input type="submit" className={styles.button} />
       </form>
     );
   }
