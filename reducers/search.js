@@ -1,7 +1,9 @@
 import { SEARCH_SUCCESS } from "../actions/search";
 
 const initialState = {
-  results: []
+  results: [],
+  // Adding current offset (default value: 0) to the initial state!
+  currentOffset: 0
 };
 
 function searchResultTransformer(element) {
