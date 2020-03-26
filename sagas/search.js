@@ -1,11 +1,7 @@
 import axios from "axios";
 import { put, call, select } from "redux-saga/effects";
 import { takeLatest } from "redux-saga";
-import {
-  SEARCH_PERFORMED,
-  searchSuccess,
-  searchError
-} from "../actions/search";
+import { PERFORM_SEARCH, searchSuccess, searchError } from "../actions/search";
 import keys from "../config/keys";
 
 const { apiKey } = keys;
@@ -37,5 +33,5 @@ function* doSearch({ searchTerm }) {
 }
 
 export default function*() {
-  yield takeLatest(SEARCH_PERFORMED, doSearch);
+  yield takeLatest(PERFORM_SEARCH, doSearch);
 }

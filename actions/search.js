@@ -1,6 +1,7 @@
-export const SEARCH_PERFORMED = "SEARCH_PERFORMED";
+export const PERFORM_SEARCH = "PERFORME_SEARCH";
 export const SEARCH_ERROR = "SEARCH_ERROR";
 export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
+export const NEW_SEARCH = "NEW_SEARCH";
 
 // Define action error function
 export const searchError = () => ({
@@ -8,13 +9,18 @@ export const searchError = () => ({
 });
 
 // Define action performed function
-export const searchPerformed = searchTerm => ({
-  type: SEARCH_PERFORMED,
-  searchTerm
+export const searchPerformed = () => ({
+  type: PERFORM_SEARCH
 });
 
 // Define action success function
 export const searchSuccess = results => ({
   type: SEARCH_SUCCESS,
   results
+});
+
+// Define new search action function
+export const newSearch = searchTerm => ({
+  type: NEW_SEARCH,
+  searchTerm
 });
