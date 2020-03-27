@@ -5,12 +5,15 @@ import {
   SEARCH_ERROR
 } from "../actions/search";
 
+import { LOCATION_CHANGE } from "react-router-redux";
+
 const initialState = {
   results: [],
   // Adding current offset (default value: 0) to the initial state!
   currentOffset: 0,
   searchTerm: null,
-  isLoading: false
+  isLoading: false,
+  isActive: false
 };
 
 function searchResultTransformer(element) {
@@ -38,7 +41,9 @@ export default (state, action) => {
         // Incrementing in 50 the current offset ih the state
         currentOffset: state.currentOffset + 50,
         // Hide the spinner when the search is success
-        isLoading: false
+        isLoading: false,
+        // Active the scroll when the search is success and the results lenght === 50. Otherwise, it must be disactived.
+        isActive: action.results.length === 50
       };
     case NEW_SEARCH:
       return {
@@ -59,7 +64,9 @@ export default (state, action) => {
         // Hide the spinner when the search has an error
         isLoading: false
       };
-
+    case LOCATION_CHANGE:
+      // When the location change (change the page), return the initial state to reset the values
+      return initialState;
     default:
       return state;
   }

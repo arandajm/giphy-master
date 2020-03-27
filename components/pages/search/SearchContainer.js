@@ -4,6 +4,7 @@ import { newSearch, performSearch } from "../../../actions/search";
 
 function mapStateToProps(state) {
   return {
+    isActive: state.search.isActive,
     isSearchLoading: state.search.isLoading
   };
 }

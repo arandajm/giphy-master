@@ -22,23 +22,23 @@ export class InfiniteScroll extends Component {
   }
 
   scrollListener() {
-    const { isLoading, onTrigger } = this.props;
+    const { isLoading, onTrigger, isActive } = this.props;
     // Extract view port height
     const viewportHeight = document.documentElement.clientHeight;
     const { bottom } = this.container.getBoundingClientRect();
 
-    if (!isLoading && bottom <= viewportHeight) {
+    if (!isLoading && bottom <= viewportHeight && isActive) {
       onTrigger();
     }
   }
 
   render() {
     // Extract children props that in this case is SearchResults component!
-    const { children, isLoading } = this.props;
+    const { children, isLoading, isActive } = this.props;
     return (
       <div ref={e => (this.container = e)}>
         {children}
-        {isLoading && <Spinner />}
+        {isLoading && isActive && <Spinner />}
       </div>
     );
   }
@@ -47,6 +47,7 @@ export class InfiniteScroll extends Component {
 export default InfiniteScroll;
 
 InfiniteScroll.propTypes = {
+  isActive: PropTypes.bool.isRequired,
   children: PropTypes.element.isRequired,
   isLoading: PropTypes.bool.isRequired,
   onTrigger: PropTypes.func.isRequired
