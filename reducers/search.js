@@ -27,8 +27,10 @@ export default (state, action) => {
         ...state,
         // Transform the original action results to the expected (SearchResult) and concat them with the existing results!
         results: state.results.concat(
-          action.results.map(element => searchResultTransformer(element))
-        )
+          action.results.map(searchResultTransformer)
+        ),
+        // Incrementing in 50 the current offset ih the state
+        currentOffset: state.currentOffset + 50
       };
     case NEW_SEARCH:
       return {
