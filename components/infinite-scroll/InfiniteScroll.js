@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Spinner from "../spinner/Spinner";
 
 export class InfiniteScroll extends Component {
   constructor(...args) {
@@ -37,7 +38,7 @@ export class InfiniteScroll extends Component {
     return (
       <div ref={e => (this.container = e)}>
         {children}
-        {isLoading && <div>Loading...</div>}
+        {isLoading && <Spinner />}
       </div>
     );
   }

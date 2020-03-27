@@ -3,7 +3,9 @@ import Search from "./Search";
 import { newSearch, performSearch } from "../../../actions/search";
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    isSearchLoading: state.search.isLoading
+  };
 }
 
 function mapDispatchToProps(dispatch) {

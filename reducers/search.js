@@ -1,10 +1,16 @@
-import { SEARCH_SUCCESS, NEW_SEARCH } from "../actions/search";
+import {
+  SEARCH_SUCCESS,
+  NEW_SEARCH,
+  PERFORM_SEARCH,
+  SEARCH_ERROR
+} from "../actions/search";
 
 const initialState = {
   results: [],
   // Adding current offset (default value: 0) to the initial state!
   currentOffset: 0,
-  searchTerm: null
+  searchTerm: null,
+  isLoading: false
 };
 
 function searchResultTransformer(element) {
@@ -30,7 +36,9 @@ export default (state, action) => {
           action.results.map(searchResultTransformer)
         ),
         // Incrementing in 50 the current offset ih the state
-        currentOffset: state.currentOffset + 50
+        currentOffset: state.currentOffset + 50,
+        // Hide the spinner when the search is success
+        isLoading: false
       };
     case NEW_SEARCH:
       return {
@@ -39,6 +47,19 @@ export default (state, action) => {
         currentOffset: 0,
         searchTerm: action.searchTerm
       };
+    case PERFORM_SEARCH:
+      return {
+        ...state,
+        // Show the spinner when search is performing
+        isLoading: true
+      };
+    case SEARCH_ERROR:
+      return {
+        ...state,
+        // Hide the spinner when the search has an error
+        isLoading: false
+      };
+
     default:
       return state;
   }
