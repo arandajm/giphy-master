@@ -13,7 +13,7 @@ import searchSaga from "./sagas/search";
 import createSagaMiddleware from "redux-saga";
 import { Router, Route } from "react-router";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
-import createBrowserHistory from "History/createBrowserHistory";
+import { createBrowserHistory } from "history";
 import SearchPageContainer from "./components/pages/search/SearchContainer";
 import TrendingPage from "./components/pages/trending/Trending";
 import RandomPage from "./components/pages/random/Random";

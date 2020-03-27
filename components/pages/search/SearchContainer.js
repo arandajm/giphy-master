@@ -11,7 +11,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onSearchSubmitted: searchTerm => {
-      console.log("searchTerm in search container: " + searchTerm);
       dispatch(newSearch(searchTerm));
       dispatch(performSearch());
     },
