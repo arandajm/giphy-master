@@ -9,10 +9,10 @@ const { apiKey } = keys;
 // state.search => return the entire branch called search ( search renducer)
 const selectSearchState = state => state.search;
 
-function* doSearch({ searchTerm }) {
+function* doSearch() {
   try {
     // call select function (saga function) to obtain the state associated with the branch take only the currentOffset for the pagination!!!.
-    const { currentOffset } = select(selectSearchState);
+    const { currentOffset, searchTerm } = select(selectSearchState);
     const searchResults = yield call(
       axios.get,
       "https://api.giphy.com/v1/gifs/search",

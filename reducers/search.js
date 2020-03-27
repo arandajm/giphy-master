@@ -1,9 +1,10 @@
-import { SEARCH_SUCCESS } from "../actions/search";
+import { SEARCH_SUCCESS, NEW_SEARCH } from "../actions/search";
 
 const initialState = {
   results: [],
   // Adding current offset (default value: 0) to the initial state!
-  currentOffset: 0
+  currentOffset: 0,
+  searchTerm: null
 };
 
 function searchResultTransformer(element) {
@@ -24,8 +25,17 @@ export default (state, action) => {
     case SEARCH_SUCCESS:
       return {
         ...state,
-        // Transform the original action results to the expected (SearchResult)
-        results: action.results.map(element => searchResultTransformer(element))
+        // Transform the original action results to the expected (SearchResult) and concat them with the existing results!
+        results: state.results.concat(
+          action.results.map(element => searchResultTransformer(element))
+        )
+      };
+    case NEW_SEARCH:
+      return {
+        ...state,
+        results: [],
+        currentOffset: 0,
+        searchTerm: action.searchTerm
       };
     default:
       return state;
