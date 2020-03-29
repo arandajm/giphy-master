@@ -15,7 +15,7 @@ import { Router, Route } from "react-router";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 import { createBrowserHistory } from "history";
 import SearchPageContainer from "./components/pages/search/SearchContainer";
-import TrendingPage from "./components/pages/trending/Trending";
+import TrendingPageContainer from "./components/pages/trending/TrendingContainer";
 import RandomPage from "./components/pages/random/Random";
 
 // create Saga Middleware
@@ -39,7 +39,7 @@ ReactDOM.render(
       <AppContainer>
         {/* Use the search page container */}
         <Route exact path="/" component={SearchPageContainer} />
-        <Route exact path="/trending" component={TrendingPage} />
+        <Route exact path="/trending" component={TrendingPageContainer} />
         <Route exact path="/random" component={RandomPage} />
       </AppContainer>
     </ConnectedRouter>

@@ -14,16 +14,24 @@ function* doSearch() {
     // call select function (saga function) to obtain the state associated with the branch take only the currentOffset for the pagination!!!.
     const { currentOffset, searchTerm } = yield select(selectSearchState);
 
+    const params = {
+      apiKey,
+      limit: 50,
+      offset: currentOffset
+    };
+    let endpoint;
+    if (searchTerm === undefined) {
+      endpoint = "trending";
+    } else {
+      endpoint = "search";
+      params.q = searchTerm;
+    }
+
     const searchResults = yield call(
       axios.get,
-      "https://api.giphy.com/v1/gifs/search",
+      `https://api.giphy.com/v1/gifs/${endpoint}`,
       {
-        params: {
-          apiKey,
-          q: searchTerm,
-          limit: 50,
-          offset: currentOffset
-        }
+        params
       }
     );
 
