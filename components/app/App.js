@@ -3,21 +3,31 @@ import NavigationContainer from "../navigation/NavigationContainer";
 import styles from "./app.css";
 // this component must use here at app level because it is used for 2 pages.s
 import GiphyDisplay from "../giphy-display/GiphyDisplay";
+import PropTypes from "prop-types";
+import * as CustomTypes from "../../lib/custom-types";
 
-export default ({ children }) => (
+const App = ({
+  children,
+  giphyDisplayIsShown,
+  hideGiphyDisplay,
+  giphyDisplayed
+}) => (
   <div>
     <h1 className={styles.header}>Giphy Master</h1>
     <NavigationContainer />
     {children}
     <GiphyDisplay
-      isShown={true}
-      onClick={() => console.log("click on the giphy..")}
-      giphy={{
-        thumbnail:
-          "https://media3.giphy.com/media/A8NNZlVuA1LoY/100_s.gif?cid=2d528ef0f92269a1ff95060af7be77748d271bb0d028ad14&rid=100_s.gif",
-        full:
-          "https://media3.giphy.com/media/A8NNZlVuA1LoY/giphy.gif?cid=2d528ef0f92269a1ff95060af7be77748d271bb0d028ad14&rid=giphy.gif"
-      }}
+      isShown={giphyDisplayIsShown}
+      onClick={() => hideGiphyDisplay()}
+      giphy={giphyDisplayed}
     />
   </div>
 );
+
+App.propTypes = {
+  giphyDisplayIsShown: PropTypes.bool.isRequired,
+  hideGiphyDisplay: PropTypes.func.isRequired,
+  giphyDisplayed: CustomTypes.SearchResult
+};
+
+export default App;

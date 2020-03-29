@@ -12,13 +12,13 @@ export default function GiphyDisplay({ isShown, giphy, onClick }) {
 
   return (
     <div onClick={onClick} className={containerClassNames}>
-      <img className={styles.image} src={giphy.full} />
+      <img className={styles.image} src={giphy ? giphy.full : ""} />
     </div>
   );
 }
 
 GiphyDisplay.propTypes = {
   isShown: PropTypes.bool.isRequired,
-  giphy: CustomTypes.SearchResult.isRequired,
+  giphy: CustomTypes.SearchResult,
   onClick: PropTypes.func.isRequired
 };
