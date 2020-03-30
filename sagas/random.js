@@ -8,26 +8,20 @@ import {
   getRandomGiphyError
 } from "../actions/random";
 const { apiKey } = keys;
-// state.random => return the entire branch called random ( random renducer)
-const selectRandomState = state => state.random;
 
 function* getRandomGiphy() {
-  // call select function (saga function) to obtain the state associated with the branch take only the currentOffset for the pagination!!!.
-  const { currentOffset } = yield select(selectRandomState);
-
   try {
     const randomResult = yield call(
       axios.get,
       "https://api.giphy.com/v1/gifs/random",
       {
         params: {
-          apiKey,
-          limit: 50,
-          offset: currentOffset
+          apiKey
         }
       }
     );
 
+    // dispatch action in saga with put
     yield put(getRandomGiphySuccess(randomResult.data.data));
   } catch (e) {
     yield put(getRandomGiphyError());
