@@ -10,6 +10,7 @@ import AppContainer from "./components/app/AppContainer";
 import mainReducer from "./reducers";
 import { createLogger } from "redux-logger";
 import searchSaga from "./sagas/search";
+import randomSaga from "./sagas/random";
 import createSagaMiddleware from "redux-saga";
 import { Router, Route } from "react-router";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
@@ -31,6 +32,8 @@ const store = createStore(
 
 // Saga Running
 sagas.run(searchSaga);
+// Saga Running
+sagas.run(randomSaga);
 
 ReactDOM.render(
   //Wrap the app component into the Provider component with a store prop
